@@ -1,0 +1,51 @@
+﻿@model ERP_D.Models.Gerencia
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Seguro desea eliminar este registro?</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EsGerenciaGeneral)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EsGerenciaGeneral)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Empresa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Empresa.Direccion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Responsable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Responsable.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GerenciaSuperior)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GerenciaSuperior.Nombre)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GerenciaId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver atras</a>
+    </form>
+</div>

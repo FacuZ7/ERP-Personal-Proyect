@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ERP_D.Models.Empresa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Empresa</h2>
+
+<p>
+    @if (User.IsInRole(Alias.RolRRHHADMIN))
+    {
+        <a asp-action="Create">Crear Nuevo</a>
+    }
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rubro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailContacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rubro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailContacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @if (User.IsInRole(Alias.RolAdmin))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.EmpresaId">Editar | </a>
+                }
+
+                <a asp-action="Details" asp-route-id="@item.EmpresaId">Detalles</a>
+
+                @if (User.IsInRole(Alias.RolAdmin))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.EmpresaId"> | Eliminar</a>
+                }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

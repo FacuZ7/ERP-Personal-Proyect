@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ERP_D.Models.Gerencia>
+
+@{
+    ViewData["Title"] = "SubGerencias";
+}
+
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 24rem;">
+            <img src="~/img/Gerencia.png" class="card-img-top" alt="SubGerencia">
+            <div class="card-body">
+                <h3 class="card-title"><b>@item.Nombre</b></h3>
+                <p>Compuesta por:</p>
+                <ul class="card-text">
+                    @foreach (var itemPos in item.Posiciones)
+                    {
+                        if (itemPos.Empleado != null)
+                        {
+                            <li><a asp-controller="Empleados" asp-action="Details" asp-route-id="@itemPos.Empleado.Id">@itemPos.Empleado.NombreCompleto. @itemPos.Empleado.Posicion.Nombre</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+

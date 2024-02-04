@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ERP_D.Models.Empleado>
+
+
+@{
+    ViewData["Title"] = "Empleados";
+
+}
+
+<h2>Empleados</h2>
+
+  @if(User.IsInRole("ADMINISTRADOR") || User.IsInRole("EMPLEADO RRHH") )
+      {
+        <a asp-controller="Empleados" asp-action="Create">Crear</a>
+       } 
+    
+   <table class="table">
+           <thead>
+               <tr>
+                   <th>
+                       @Html.DisplayNameFor(model => model.UserName)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Nombre)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Apellido)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Email)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.Posicion)
+                   </th>
+                   <th>
+                       @Html.DisplayNameFor(model => model.EstadoEmpleado)
+                   </th>
+                   @if(User.IsInRole("ADMINISTRADOR") || User.IsInRole("EMPLEADO RRHH"))
+                    {
+                        <th>
+                            @Html.DisplayNameFor(model => model.Posicion.Sueldo)
+                        </th>
+                    }
+               </tr>
+           </thead>
+           <tbody>
+               @foreach (var empleado in Model)
+                {
+                   <tr>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.UserName)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.Nombre)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.Apellido)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.Email)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.Posicion.Nombre)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(modelItem => empleado.EstadoEmpleado)
+                       </td>
+                       @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("EMPLEADO RRHH"))
+                        {
+                           <td>
+                               @Html.DisplayFor(modelItem => empleado.Posicion.Sueldo)
+                           </td>
+                        }
+                   <td>
+                       <a asp-action="Edit" asp-route-id="@empleado.Id">Editar</a> |
+                       <a asp-action="Details" asp-route-id="@empleado.Id">Detalles</a> |
+                       <a asp-controller="Telefonos" asp-action="Create" asp-items="@empleado.Id">Agregar Telefono |</a>
+
+                       @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("EMPLEADO RRHH"))
+                       {
+                           @if (empleado.EstadoEmpleado)
+                           {
+                               <a asp-action="Disable" asp-route-id="@empleado.Id">Deshabilitar |</a>
+                           }
+                           else
+                           {
+                               <a asp-action="Enable" asp-route-id="@empleado.Id">Habilitar |</a>
+                           }
+
+                           <a asp-action="Delete" asp-route-id="@empleado.Id">Eliminar</a>
+                            }
+
+                   </td>
+                   </tr>
+                }
+           </tbody>
+       </table>
+

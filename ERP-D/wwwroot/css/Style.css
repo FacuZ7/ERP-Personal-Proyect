@@ -1,0 +1,59 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+.index {
+    width: 940px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+
+
+.navbarConfig {
+    text-align: end;
+}
+
+    .index li {
+        display: inline-block;
+        text-align: center;
+        width: 40%;
+        vertical-align: top;
+        margin: 1.5% 1.5%;
+        padding: 20px 20px;
+        box-sizing: border-box;
+        border: 2px solid #000000;
+        border-radius: 10px;
+    }
+
+    .index a h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .index li a span {
+        font-size: 120px;
+    }
+
+
+        .index li:hover {
+            border-color: #c78c19;
+        }
+
+            .index li:hover h2 {
+                font-size: 25px;
+            }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.banner {
+    width: 40px;
+    height: 40px;
+}
+
+.banner2 {
+    width: 20px;
+    height: 20px;
+}

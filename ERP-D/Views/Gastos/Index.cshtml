@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ERP_D.Models.Gasto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Gastos</h2>
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaGasto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            @if (User.IsInRole("EMPLEADO RRHH"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.CentroDeCosto.Gerencia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Empleado)
+                </th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaGasto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monto)
+                </td>
+                @if (User.IsInRole("EMPLEADO RRHH"))
+                {
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.CentroDeCosto.Gerencia.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.Empleado.NombreCompleto)
+                    </td>
+                }
+            <td>
+                @if (Utilidades.GetUserId(User) == item.EmpleadoID || User.IsInRole(Alias.RolAdmin))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.GastoId">Editar | </a>
+                }
+
+                    <a asp-action="Details" asp-route-id="@item.GastoId">Detalles</a>
+
+                @if (Utilidades.GetUserId(User) == item.EmpleadoID || User.IsInRole(Alias.RolAdmin))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.GastoId"> | Eliminar</a>
+                }
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

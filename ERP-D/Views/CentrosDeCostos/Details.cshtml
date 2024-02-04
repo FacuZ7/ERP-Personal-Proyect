@@ -1,0 +1,56 @@
+﻿@model ERP_D.Models.CentroDeCosto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Centro de Costo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MontoMaximo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MontoMaximo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gerencia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gerencia.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>@Html.DisplayNameFor(Model => Model.Gastos)</h4>
+
+    @if (Model.Gastos.Any())
+    {
+        <ul>
+            @foreach (Gasto g in Model.Gastos)
+            {
+                <li>
+                    <p><b>Fecha:</b> @g.FechaGasto.ToShortDateString() <b> Monto: </b>@g.Monto <b> Usuario: </b>@g.Empleado.NombreCompleto</p>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <h6>No hay gastos registrados.</h6>
+    }
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CentroDeCostoId">Editar</a> |
+    <a asp-action="Index">Volver</a>
+</div>

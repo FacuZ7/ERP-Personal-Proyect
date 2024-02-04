@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ERP_D.Models.Gerencia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Gerencias</h2>
+
+<p>
+    @if (!User.IsInRole("EMPLEADO COMUN"))
+    {
+        <a asp-action="Create">Crear Nuevo</a>
+        <br />
+        <a asp-action="ReporteGerencias">Reporte de Gerencias</a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsGerenciaGeneral)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Responsable)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsGerenciaGeneral)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Responsable.Nombre)
+            </td>
+            <td>
+                @if (!User.IsInRole("EMPLEADO COMUN"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.GerenciaId">Editar |</a>
+                }
+               
+                    <a asp-action="Details" asp-route-id="@item.GerenciaId">Detalles</a>
+
+                @if (!User.IsInRole("EMPLEADO COMUN"))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.GerenciaId"> | Eliminar</a>
+                }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

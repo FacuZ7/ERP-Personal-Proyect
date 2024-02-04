@@ -1,0 +1,48 @@
+﻿@model ERP_D.Models.Gerencia
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Alta nueva Gerencia</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+                <div class="form-group form-check">
+                    <input class="form-check-label" asp-for="EsGerenciaGeneral" />
+                    <label asp-for="EsGerenciaGeneral" class="form-check-label"></label>
+                </div>
+            <div class="form-group">
+                <label asp-for="EmpresaId" class="control-label"></label>
+                <select asp-for="EmpresaId" class="form-control" asp-items="ViewBag.EmpresaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PosicionResponsableId" class="control-label"></label>
+                @Html.DropDownList("PosicionResponsableId", ViewBag.PosicionResponsableId as SelectList, "-- SELECCIONE --", new { @class = "form-control" })
+                @*<select asp-for="PosicionResponsableId" class="form-control" asp-items="ViewBag.PosicionResponsableId"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="GerenciaSuperiorId" class="control-label"></label>
+                <select asp-for="GerenciaSuperiorId" class="form-control" asp-items="ViewBag.GerenciaSuperiorId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

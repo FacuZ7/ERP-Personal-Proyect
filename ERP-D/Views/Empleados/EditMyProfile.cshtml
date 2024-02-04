@@ -1,0 +1,80 @@
+﻿@model ERP_D.ViewModels.EditMyProfile
+
+@{
+    ViewData["Title"] = "EditMyProfile";
+}
+
+<h2>Datos</h2>
+
+<hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditMyProfile">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="text" value=@Model.EmpleadoId hidden />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Direccion" class="control-label"></label>
+                    <input asp-for="Direccion" class="form-control" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <img src="@Model.Foto.Path"/>
+                </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <h3>Telefonos</h3>
+    <a asp-action="Create" asp-controller="Telefonos">Nuevo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <p>Número</p>
+                </th>
+                <th>
+                    <p>Tipo</p>
+                </th>
+                <th>
+                    <p>Acciones</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Telefonos)
+            {
+                <tr>
+                    <td>
+                        @item.Numero
+                    </td>
+                    <td>
+                        @item.TipoTelefono
+                    </td>
+                    <td>
+                        <a asp-controller="Telefonos" asp-action="Edit" asp-route-id="@item.TelefonoId">Editar</a> |
+                        <a asp-controller="Telefonos" asp-action="Details" asp-route-id="@item.TelefonoId">Detalles</a> |
+                        <a asp-controller="Telefonos" asp-action="Delete" asp-route-id="@item.TelefonoId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <a asp-action="Index">Volver atras</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

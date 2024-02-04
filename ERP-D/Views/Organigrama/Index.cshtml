@@ -1,0 +1,14 @@
+﻿@model Organigrama
+
+<div class="card" style="width: 30rem;">
+    <img src="~/img/GerenciaGeneral.png" class="card-img-top" alt="GerenciaGeneral">
+    <div class="card-body">
+        <h3 class="card-title"><b>@Model.GerenciaGeneral.Nombre</b></h3>
+        <ul class="card-text">
+            <li>Persona a cargo: <a a asp-controller="Empleados" asp-action="Details" asp-route-id="@Model.GerenciaGeneral.Responsable.Empleado.Id">@Model.GerenciaGeneral.Responsable.Empleado.NombreCompleto</a></li>
+            <li>Contiene @Model.Gerencias.Count SubGerencia/s</li>
+        </ul>
+        
+        <a asp-action="SubGerencias" class="btn btn-primary">Detalles</a>
+    </div>
+</div>

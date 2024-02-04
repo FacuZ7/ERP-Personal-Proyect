@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/Style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+    <div class="text-center">
+        <main>
+            @if (!string.IsNullOrEmpty(ViewBag.PrecargaOK))
+            {
+                <h4>PrecargaLista</h4>
+            }
+            <ul class="index">
+                <li>
+                    <a class="dropdown-item" asp-controller="RecursosHumanos" asp-action="Index">
+                        <h2>RR HH</h2>
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Operaciones" asp-action="Index">
+                        <h2>ORGANIZACIÓN</h2>
+                        <span class="material-symbols-outlined">
+                            account_balance
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Finanzas" asp-action="Index">
+                        <h2>FINANZAS</h2>
+                        <span class="material-symbols-outlined">
+                            monetization_on
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </main>
+    </div>
+</body>

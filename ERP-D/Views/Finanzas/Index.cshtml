@@ -1,0 +1,30 @@
+﻿@model Finanza
+    <head>
+        <link rel="stylesheet" href="~/css/Style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    </head>
+    <body>
+        <div class="text-center">
+            <main>
+                <ul class="index">
+                    <li>
+                        <a class="dropdown-item" asp-controller="CentrosDeCostos" asp-action="Index">
+                            <h2>CENTRO DE COSTOS</h2>
+                            <span class="material-symbols-outlined">
+                                price_check
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Gastos" asp-action="Index">
+                            <h2>GASTOS</h2>
+                            <span class="material-symbols-outlined">
+                                monetization_on
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </main>
+        </div>
+    </body>

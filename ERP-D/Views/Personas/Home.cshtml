@@ -1,0 +1,15 @@
+﻿@model Persona
+
+
+<form asp-action="Create" asp-controller="Personas" method="post">
+    <label asp-for="@Model.UserName"></label>
+    <input asp-for="@Model.UserName" value="" placeholder="Ingrese su nombre" />
+
+    <label asp-for="@Model.Email"></label>
+    <input asp-for="@Model.Email" />
+
+    <label asp-for="@Model.FechaAlta"></label>
+    <input asp-for="@Model.FechaAlta" />
+
+    <input type="submit" value="Enviar" />
+</form>

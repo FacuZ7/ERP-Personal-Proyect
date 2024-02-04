@@ -1,0 +1,44 @@
+﻿@model ERP_D.Models.CentroDeCosto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h3>Alta Centro de Costo</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GerenciaId" class="control-label"></label> @*Traer grisada la gerencia relacionada.*@
+                @Html.DropDownList("GerenciaId", ViewBag.GerenciaId as SelectList, "-- SELECCIONE --", new { @class = "form-control" })
+                @*<select asp-for="GerenciaId" class="form-control" asp-items="ViewBag.GerenciaId"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoMaximo" class="control-label"></label>
+                <input asp-for="MontoMaximo" class="form-control" />
+                <span asp-validation-for="MontoMaximo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

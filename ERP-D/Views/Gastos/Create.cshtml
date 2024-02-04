@@ -1,0 +1,50 @@
+﻿@model ERP_D.Models.Gasto
+
+@{
+    ViewData["Title"] = "Alta De Gasto";
+}
+
+
+
+
+<h3>Alta de Gasto</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaGasto" class="control-label"></label>
+                <input asp-for="FechaGasto" class="form-control" />
+                <span asp-validation-for="FechaGasto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monto" class="control-label"></label>
+                <input asp-for="Monto" class="form-control" placeholder="Aún disponible: $@ViewBag.Disponible"/>
+                <span asp-validation-for="Monto" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <input asp-for="EmpleadoID" value="@ViewBag.EmpleadoId">  
+            </div>
+            <div class="form-group" hidden>
+                <input asp-for="CentroDeCostoId" value="@ViewBag.CentroDeCostoId"> 
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
